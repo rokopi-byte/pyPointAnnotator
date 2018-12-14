@@ -1,5 +1,5 @@
 # pyPointAnnotator
-Point annotation on images.
+Point annotation on images and mask generator.
 
 Show an image to the user and let him annotate all the point defined, with a fixed order. You can quit and resume where you left. All points defined in the labels array must be annotated in that order, with the possibility to skip points. The coordinates of the points will be saved in the result file. In this example we annotate body joints.
 
@@ -40,3 +40,23 @@ The image is displayed with the following indication:
 * Save/Next button to save the result of the current annotation and go to the next image
 
 Left click to annotate, right mouse click to skip the point (i.e. the point is not visible) in this case in the result file we will have -1,-1 as coordinates.
+
+# Mask Generator
+
+For every point annotated a binary mask can be generated. The following will create a mask for every point for every image.  
+
+```bash
+python3 pointAnnotatorMask.py [-h] [-i IMAGES_FOLDER] [-d DATASET] [-m MASK_FOLDER]
+
+```
+
+optional arguments:
+```
+  -h, --help        show this help message and exit
+
+  -i IMAGES_FOLDER  path images folder, default "img"
+  
+  -d DATASET        Result file, default "result.csv"
+  
+  -m MASK_FOLDER    path to save masks
+```
