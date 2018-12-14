@@ -34,7 +34,7 @@ optional arguments:
 The image is displayed with the following indication:
 
 * Progress in annotation of the images (blue label)
-* Next point to annotate
+* Next point to annotate (red label)
 * Reset button to restart the annotation of the current image
 * Undo button to undo the last annotation point
 * Save/Next button to save the result of the current annotation and go to the next image
