@@ -1,7 +1,7 @@
 # pyPointAnnotator
 Point annotation on images.
 
-Show an image to the user and let him annotate all the point defined, with a fixed order. All points defined in the labels array must be annotated in that order, with the possibility to skip points. The coordinates of the points will be saved in the result file. In this example we annotate body joints.
+Show an image to the user and let him annotate all the point defined, with a fixed order. You can quit and resume where you left. All points defined in the labels array must be annotated in that order, with the possibility to skip points. The coordinates of the points will be saved in the result file. In this example we annotate body joints.
 
 ![Image of man](https://i.ibb.co/rs9QnH2/done.png)
 
