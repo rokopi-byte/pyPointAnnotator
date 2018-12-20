@@ -18,7 +18,7 @@ image_path;x1,y1;...xn,yn
 ```
 
 # Requirements
-Python 3 with PIL, OpenCV 3, Numpy and Tkinter
+Python 3 with PIL, OpenCV 3 and Numpy
 
 # Usage
 ```bash
