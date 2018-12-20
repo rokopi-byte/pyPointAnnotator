@@ -77,6 +77,8 @@ class MainWindow():
         self.refPt = []
         self.idx+=1
         self.buttonSave.configure(state="disabled")
+        self.buttonReset.configure(state="disabled")
+        self.buttonUndo.configure(state="disabled")
         self.cv_img = cv2.cvtColor(cv2.imread(os.path.join(self.image_path, self.images[self.idx])), cv2.COLOR_BGR2RGB)
         self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(self.cv_img))
         self.canvas.itemconfig(self.image_on_canvas, image = self.photo)
