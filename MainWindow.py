@@ -110,5 +110,8 @@ class MainWindow():
             self.labelNext.config(text="Done")
             self.canvas.unbind("<Button 1>")
             self.canvas.unbind("<Button 3>")
+            self.buttonSave.configure(state="normal")			
         else:
             self.labelNext.config(text=self.labels[len(self.refPt)])
+        self.buttonUndo.configure(state="normal")
+        self.buttonReset.configure(state="normal")
