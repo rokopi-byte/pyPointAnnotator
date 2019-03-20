@@ -18,7 +18,22 @@ image_path;x1,y1;...xn,yn
 ```
 
 # Requirements
-Python 3 with PIL, OpenCV 3 and Numpy
+Python 3 with the following modules:
+
+Pillow
+```bash
+python3 -m pip install Pillow
+```
+
+OpenCV 3
+```bash
+python3 -m pip install opencv-python==3.4.5.20
+```
+
+Numpy
+```bash
+python3 -m pip install numpy
+```
 
 # Usage
 ```bash
@@ -40,14 +55,14 @@ The image is displayed with the following indication:
 * Progress in annotation of the images (blue label)
 * Next point to annotate (red label)
 * Reset button to restart the annotation of the current image
-* Undo button to undo the last annotation point
+* Undo button to undo last annotated point
 * Save/Next button to save the result of the current annotation and go to the next image
 
-Left click to annotate, right mouse click to skip the point (i.e. the point is not visible) in this case in the result file we will have -1,-1 as coordinates.
+Left click to annotate, right mouse click to skip the point (i.e. the point is not visible), in this case in the result file we will have -1,-1 as coordinates.
 
 # Mask Generator
 
-For every point annotated a binary mask can be generated. The following will create a mask for every point for every image.  
+For every point annotated a binary mask can be generated. The following will create a binary mask for every point for every image.  
 
 ```bash
 python3 pointAnnotatorMask.py [-h] [-i IMAGES_FOLDER] [-d DATASET] [-m MASK_FOLDER]

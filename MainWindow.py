@@ -14,6 +14,8 @@ class MainWindow():
         self.result = result
         self.image_path = image_path
         self.images = images
+        self.done = done
+        self.tot_images = len(self.images)+self.done
         self.cv_img = cv2.cvtColor(cv2.imread(os.path.join(self.image_path, self.images[self.idx])), cv2.COLOR_BGR2RGB)
         self.img_backup = self.cv_img.copy()
         self.height, self.width, self.no_channels = self.cv_img.shape
@@ -27,8 +29,7 @@ class MainWindow():
         self.buttonReset.grid(row=2, column=0)
         self.labelNext = tk.Label(main, text=self.labels[len(self.refPt)], fg="red", font=("Helvetica", 16))
         self.labelNext.grid(row=0, column=1, columnspan=2)
-        self.done = done
-        self.labelCounter = tk.Label(main, text=str(self.done) + "/" + str(len(self.images) + self.done), fg="blue", font=("Helvetica", 16))
+        self.labelCounter = tk.Label(main, text=str(self.done) + "/" + str(self.tot_images), fg="blue", font=("Helvetica", 16))
         self.labelCounter.grid(row=0, column=0, columnspan=2)
 
         # images
@@ -87,7 +88,7 @@ class MainWindow():
         self.canvas.bind("<Button 3>",self.onClickSkip)
         self.img_backup = self.cv_img.copy()
         self.done+=1
-        self.labelCounter.config(text=str(self.done) + "/" + str(len(self.images) + self.done))
+        self.labelCounter.config(text=str(self.done) + "/" + str(self.tot_images))
 
     def onClick(self,event):
         self.refPt.append((event.x, event.y))

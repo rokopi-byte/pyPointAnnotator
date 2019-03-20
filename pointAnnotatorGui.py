@@ -1,5 +1,6 @@
 import tkinter as tk
 import os
+import sys
 import argparse
 from MainWindow import MainWindow
 
@@ -13,7 +14,12 @@ args = vars(ap.parse_args())
 
 image_path = args["images"]
 result = args["result"]
-images = [k for k in sorted(os.listdir(os.path.join(image_path))) if '8bit.png' in k]
+try:
+    images = [k for k in sorted(os.listdir(os.path.join(image_path))) if '8bit.png' in k]
+except FileNotFoundError:
+    print("No image folder found or provided (default is img)")
+    sys.exit(1)
+
 dataset = []
 
 try:
@@ -26,7 +32,7 @@ try:
     features.close()
     done = len(data)-1
 except FileNotFoundError:
-    print("No dataset found, starting new dataset!\n")
+    print("No result file found, starting new annotation!\n")
     dataset = []
     done = 0
     with open(result, 'w') as features:
@@ -44,4 +50,5 @@ if images==[]:
 else:
     root = tk.Tk()
     MainWindow(root,images,result,labels,image_path,done)
+    root.title("pyPointAnnotator")
     root.mainloop()
