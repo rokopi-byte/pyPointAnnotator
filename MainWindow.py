@@ -44,6 +44,9 @@ class MainWindow():
         self.buttonReset.configure(state="disabled")
 
     def onButtonUndo(self):
+        if len(self.refPt) == len(self.labels):
+            self.canvas.bind("<Button 1>",self.onClick)
+            self.canvas.bind("<Button 3>",self.onClickSkip)
         del self.refPt[-1]
         if len(self.refPt) == 0:
             self.buttonUndo.configure(state="disabled")
@@ -55,8 +58,13 @@ class MainWindow():
         self.canvas.itemconfig(self.image_on_canvas, image = self.photo)
         self.labelNext.config(text=self.labels[len(self.refPt)])
         self.buttonSave.configure(state="disabled")
+        self.buttonSave.unbind('<Return>')
+
 
     def onButtonReset(self):
+        if len(self.refPt) == len(self.labels):
+            self.canvas.bind("<Button 1>",self.onClick)
+            self.canvas.bind("<Button 3>",self.onClickSkip)
         self.refPt = []
         self.buttonReset.configure(state="disabled")
         self.buttonUndo.configure(state="disabled")
@@ -65,6 +73,8 @@ class MainWindow():
         self.canvas.itemconfig(self.image_on_canvas, image = self.photo)
         self.labelNext.config(text=self.labels[len(self.refPt)])
         self.buttonSave.configure(state="disabled")
+        self.buttonSave.unbind('<Return>')
+
 
     def onButtonSave(self):
         with open(self.result, "a") as mylog:
@@ -80,6 +90,7 @@ class MainWindow():
         self.buttonSave.configure(state="disabled")
         self.buttonReset.configure(state="disabled")
         self.buttonUndo.configure(state="disabled")
+        self.buttonSave.unbind('<Return>')
         self.cv_img = cv2.cvtColor(cv2.imread(os.path.join(self.image_path, self.images[self.idx])), cv2.COLOR_BGR2RGB)
         self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(self.cv_img))
         self.canvas.itemconfig(self.image_on_canvas, image = self.photo)
@@ -100,6 +111,8 @@ class MainWindow():
             self.canvas.unbind("<Button 1>")
             self.canvas.unbind("<Button 3>")
             self.buttonSave.configure(state="normal")
+            self.buttonSave.focus_set()
+            self.buttonSave.bind('<Return>',self.enter)
         else:
             self.labelNext.config(text=self.labels[len(self.refPt)])
         self.buttonUndo.configure(state="normal")
@@ -111,8 +124,13 @@ class MainWindow():
             self.labelNext.config(text="Done")
             self.canvas.unbind("<Button 1>")
             self.canvas.unbind("<Button 3>")
-            self.buttonSave.configure(state="normal")			
+            self.buttonSave.configure(state="normal")
+            self.buttonSave.focus_set()
+            self.buttonSave.bind('<Return>',self.enter)
         else:
             self.labelNext.config(text=self.labels[len(self.refPt)])
         self.buttonUndo.configure(state="normal")
         self.buttonReset.configure(state="normal")
+
+    def enter(self,event=None):
+        self.onButtonSave()

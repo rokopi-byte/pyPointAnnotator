@@ -3,7 +3,7 @@ Point annotation on images and mask generator.
 
 Show an image to the user and let him annotate all the point defined, with a fixed order.
 This software scan the images folder selecting only those with name ending in "8bit.png", to be used directly 
-with [pyOniExtractor](https://github.com/roccopietrini/pyOniExtractor) change this accordingly to your files in the code.
+with [pyOniExtractor](https://github.com/roccopietrini/pyOniExtractor), you can change this accordingly to your files in the code.
 You can quit and resume where you left. All points defined in the labels array must be annotated in that order, with the possibility to skip points. 
 The coordinates of the points will be saved in the result file. In this example we annotate body joints.
 
